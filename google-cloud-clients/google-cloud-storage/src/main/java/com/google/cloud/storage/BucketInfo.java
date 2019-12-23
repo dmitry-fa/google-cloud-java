@@ -663,7 +663,7 @@ public class BucketInfo implements Serializable {
             .toString();
       }
 
-      StorageClass getStorageClass() {
+      public StorageClass getStorageClass() {
         return storageClass;
       }
     }
@@ -1249,7 +1249,7 @@ public class BucketInfo implements Serializable {
                   @Override
                   public String apply(String input) {
                     // replace null values with empty strings
-                    return input == null ? Data.<String>nullOf(String.class) : input;
+                    return input == null ? Data.nullOf(String.class) : input;
                   }
                 });
       }
@@ -1259,7 +1259,7 @@ public class BucketInfo implements Serializable {
     @Override
     public Builder setDefaultKmsKeyName(String defaultKmsKeyName) {
       this.defaultKmsKeyName =
-          defaultKmsKeyName != null ? defaultKmsKeyName : Data.<String>nullOf(String.class);
+          defaultKmsKeyName != null ? defaultKmsKeyName : Data.nullOf(String.class);
       return this;
     }
 
@@ -1727,8 +1727,7 @@ public class BucketInfo implements Serializable {
     }
     if (retentionPeriod != null) {
       if (Data.isNull(retentionPeriod)) {
-        bucketPb.setRetentionPolicy(
-            Data.<Bucket.RetentionPolicy>nullOf(Bucket.RetentionPolicy.class));
+        bucketPb.setRetentionPolicy(Data.nullOf(Bucket.RetentionPolicy.class));
       } else {
         Bucket.RetentionPolicy retentionPolicy = new Bucket.RetentionPolicy();
         retentionPolicy.setRetentionPeriod(retentionPeriod);
